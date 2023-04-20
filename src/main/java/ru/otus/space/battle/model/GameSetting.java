@@ -2,7 +2,7 @@ package ru.otus.space.battle.model;
 
 public class GameSetting {
 
-    private final double fuel;
+    private double fuel;
 
     private final double consumption;
 
@@ -17,5 +17,9 @@ public class GameSetting {
 
     public double getConsumption() {
         return consumption;
+    }
+
+    public void setFuel(double fuel) {
+        this.fuel = fuel;
     }
 }
