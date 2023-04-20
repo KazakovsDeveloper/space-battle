@@ -9,7 +9,7 @@ import static java.util.Objects.nonNull;
 /**
  * BurnFuelCommand уменьшает количество топлива на скорость расхода топлива.
  */
-public class BurnFuelCommand implements DoubleValueChecker {
+public class BurnFuelCommand implements DoubleValueChecker, Command {
 
     private final GameSetting gameSetting;
 
@@ -17,6 +17,7 @@ public class BurnFuelCommand implements DoubleValueChecker {
         this.gameSetting = gameSetting;
     }
 
+    @Override
     public boolean execute() {
         burnFuel();
 

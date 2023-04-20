@@ -9,7 +9,7 @@ import static java.util.Objects.nonNull;
 /**
  * CheckFuelCommand проверяет, что топлива достаточно, если нет, то выбрасывает исключение CommandException.
  */
-public class CheckFuelCommand implements DoubleValueChecker {
+public class CheckFuelCommand implements DoubleValueChecker, Command {
 
     private final GameSetting gameSetting;
 
@@ -17,6 +17,7 @@ public class CheckFuelCommand implements DoubleValueChecker {
         this.gameSetting = gameSetting;
     }
 
+    @Override
     public boolean execute() {
         return checkFuel();
     }
