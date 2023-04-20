@@ -20,8 +20,8 @@ class CheckFuelCommandTest {
 
     @BeforeAll
     public void init() {
-        GameSetting gameSetting = new GameSetting(10.0);
-        GameSetting gameSetting2 = new GameSetting(0.0);
+        GameSetting gameSetting = new GameSetting(10.0, 2.0);
+        GameSetting gameSetting2 = new GameSetting(0.0, 2.0);
 
         checkFuelCommandWithSettings = new CheckFuelCommand(gameSetting);
         checkFuelCommandWithoutSettings = new CheckFuelCommand(gameSetting2);
@@ -31,7 +31,7 @@ class CheckFuelCommandTest {
 
     @Test
     @DisplayName("проверка, что топлива достаточно для движения")
-    public void executeTestFuelBiggerThan0() {
+    public void executeTestFuelBiggerThanConsumption() {
         boolean fuelIsBiggerThan0 = checkFuelCommandWithSettings.execute();
 
         assertTrue(fuelIsBiggerThan0);

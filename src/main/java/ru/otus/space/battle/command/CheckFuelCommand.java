@@ -22,7 +22,7 @@ public class CheckFuelCommand {
 
     private boolean checkFuel() {
         if (nonNull(gameSetting)) {
-            if (gameSetting.getFuel() > 0.0) {
+            if (gameSetting.getFuel() >= gameSetting.getConsumption()) {
                 return true;
             }
             throw new CommandException("Топлива недостаточно");
