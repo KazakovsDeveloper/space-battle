@@ -1,4 +1,4 @@
-package ru.otus.space.battle;
+package ru.otus.space.battle.model;
 
 public class GameSetting {
 
@@ -6,5 +6,9 @@ public class GameSetting {
 
     public GameSetting(double fuel) {
         this.fuel = fuel;
+    }
+
+    public double getFuel() {
+        return fuel;
     }
 }

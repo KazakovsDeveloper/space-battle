@@ -1,4 +1,4 @@
-package ru.otus.space.battle;
+package ru.otus.space.battle.command;
 
 public class RotateCommand {
 
