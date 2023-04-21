@@ -26,7 +26,7 @@ public class MoveCommand implements Command, Movable {
         Vector position = getPosition();
         Vector velocity = getVelocity();
 
-        if (isNull(position)) {
+        if (isNull(position) || isNull(velocity)) {
             throw new CommandException("Не указаны координаты позиции");
         }
 

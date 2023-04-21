@@ -14,6 +14,7 @@ class MoveCommandTest {
     private MoveCommand moveCommand;
     private GameSetting gameSetting;
     private MoveCommand moveCommandWithNullPosition;
+    private MoveCommand moveCommandWithNullVelocity;
 
     @BeforeEach
     public void init() {
@@ -25,6 +26,9 @@ class MoveCommandTest {
 
         GameSetting gameSettingWithNullPosition = new GameSetting(0.0, 0.0, null, velocity);
         moveCommandWithNullPosition = new MoveCommand(gameSettingWithNullPosition);
+
+        GameSetting gameSettingWithNullVelocity = new GameSetting(0.0, 0.0, position, null);
+        moveCommandWithNullVelocity = new MoveCommand(gameSettingWithNullVelocity);
     }
 
     /**
@@ -52,4 +56,15 @@ class MoveCommandTest {
 
     }
 
+    /**
+     * Попытка сдвинуть объект, у которого невозможно прочитать значение мгновенной скорости,
+     * приводит к ошибке
+     */
+    @Test
+    @DisplayName("ошибка, невозможно прочитать скорость")
+    public void executeTestShouldThrowExceptionIfCanNotReadVelocity() {
+
+        assertThrows(CommandException.class, () -> moveCommandWithNullVelocity.execute());
+
+    }
 }
