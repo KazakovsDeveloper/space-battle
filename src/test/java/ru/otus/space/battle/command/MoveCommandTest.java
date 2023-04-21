@@ -3,11 +3,11 @@ package ru.otus.space.battle.command;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.otus.space.battle.exception.CommandException;
 import ru.otus.space.battle.model.GameSetting;
 import ru.otus.space.battle.model.Vector;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MoveCommandTest {
 
@@ -35,6 +35,17 @@ class MoveCommandTest {
         assertTrue(executeMove);
         assertEquals(5, gameSetting.getPosition().getX());
         assertEquals(8, gameSetting.getPosition().getY());
+    }
+
+    /**
+     * Попытка сдвинуть объект, у которого невозможно прочитать положение в пространстве, приводит к ошибке
+     */
+    @Test
+    @DisplayName("ошибка, невозможно прочитать положение в пространстве")
+    public void executeTestShouldThrowExceptionIfCanNotReadPosition() {
+
+        assertThrows(CommandException.class, () -> moveCommand.execute());
+
     }
 
 }
