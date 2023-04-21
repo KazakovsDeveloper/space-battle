@@ -22,7 +22,7 @@ class MacroCommandTest {
 
         GameSetting correctGameSetting = new GameSetting(10.0, 2.0);
         CheckFuelCommand checkFuelCommand = new CheckFuelCommand(correctGameSetting);
-        MoveCommand moveCommand = new MoveCommand();
+        MoveCommand moveCommand = new MoveCommand(correctGameSetting);
         BurnFuelCommand burnFuelCommand = new BurnFuelCommand(correctGameSetting);
 
         GameSetting notEnoughFuel = new GameSetting(1.0, 2.0);
