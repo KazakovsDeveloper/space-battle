@@ -1,23 +1,25 @@
 package ru.otus.space.battle.command;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.otus.space.battle.model.GameSetting;
 import ru.otus.space.battle.model.Vector;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MoveCommandTest {
 
     private MoveCommand moveCommand;
+    private GameSetting gameSetting;
 
     @BeforeEach
     public void init() {
         Vector position = new Vector(12, 5);
         Vector velocity = new Vector(-7, 3);
 
-        GameSetting gameSetting = new GameSetting(0.0, 0.0, position, velocity);
-
+        gameSetting = new GameSetting(0.0, 0.0, position, velocity);
         moveCommand = new MoveCommand(gameSetting);
     }
 
@@ -26,10 +28,13 @@ class MoveCommandTest {
      * движение меняет положение объекта на (5, 8)
      */
     @Test
+    @DisplayName("движение меняет положение объекта на (5, 8)")
     public void executeTestShouldMoveTheObject() {
         boolean executeMove = moveCommand.execute();
 
         assertTrue(executeMove);
+        assertEquals(5, gameSetting.getPosition().getX());
+        assertEquals(8, gameSetting.getPosition().getY());
     }
 
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import ru.otus.space.battle.exception.CommandException;
 import ru.otus.space.battle.model.GameSetting;
+import ru.otus.space.battle.model.Vector;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -19,8 +20,10 @@ class MacroCommandTest {
 
     @BeforeAll
     public void init() {
+        Vector position = new Vector(1, 2);
+        Vector velocity = new Vector(4, 5);
 
-        GameSetting correctGameSetting = new GameSetting(10.0, 2.0);
+        GameSetting correctGameSetting = new GameSetting(10.0, 2.0, position, velocity);
         CheckFuelCommand checkFuelCommand = new CheckFuelCommand(correctGameSetting);
         MoveCommand moveCommand = new MoveCommand(correctGameSetting);
         BurnFuelCommand burnFuelCommand = new BurnFuelCommand(correctGameSetting);

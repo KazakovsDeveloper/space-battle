@@ -14,21 +14,40 @@ public class MoveCommand implements Command, Movable {
 
     @Override
     public boolean execute() {
-        return false;
+        move();
+        return true;
     }
 
     @Override
     public void move() {
+        Vector position = getPosition();
+        Vector velocity = getVelocity();
 
+        Vector newPosition = getVectorSum(position, velocity);
+
+        gameSetting.setPosition(newPosition);
+    }
+
+    private Vector getVectorSum(Vector position, Vector velocity) {
+        int xPosition = position.getX();
+        int xVelocity = velocity.getX();
+
+        int yPosition = position.getY();
+        int yVelocity = velocity.getY();
+
+        int xNewPosition = xPosition + xVelocity;
+        int yNewPosition = yPosition + yVelocity;
+
+        return new Vector(xNewPosition, yNewPosition);
     }
 
     @Override
     public Vector getPosition() {
-        return null;
+        return gameSetting.getPosition();
     }
 
     @Override
     public Vector getVelocity() {
-        return null;
+        return gameSetting.getVelocity();
     }
 }
