@@ -13,6 +13,7 @@ class MoveCommandTest {
 
     private MoveCommand moveCommand;
     private GameSetting gameSetting;
+    private MoveCommand moveCommandWithNullPosition;
 
     @BeforeEach
     public void init() {
@@ -21,6 +22,9 @@ class MoveCommandTest {
 
         gameSetting = new GameSetting(0.0, 0.0, position, velocity);
         moveCommand = new MoveCommand(gameSetting);
+
+        GameSetting gameSettingWithNullPosition = new GameSetting(0.0, 0.0, null, velocity);
+        moveCommandWithNullPosition = new MoveCommand(gameSettingWithNullPosition);
     }
 
     /**
@@ -44,7 +48,7 @@ class MoveCommandTest {
     @DisplayName("ошибка, невозможно прочитать положение в пространстве")
     public void executeTestShouldThrowExceptionIfCanNotReadPosition() {
 
-        assertThrows(CommandException.class, () -> moveCommand.execute());
+        assertThrows(CommandException.class, () -> moveCommandWithNullPosition.execute());
 
     }
 

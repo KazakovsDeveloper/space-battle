@@ -1,8 +1,11 @@
 package ru.otus.space.battle.command;
 
+import ru.otus.space.battle.exception.CommandException;
 import ru.otus.space.battle.model.GameSetting;
 import ru.otus.space.battle.model.Vector;
 import ru.otus.space.battle.movement.Movable;
+
+import static java.util.Objects.isNull;
 
 public class MoveCommand implements Command, Movable {
 
@@ -22,6 +25,10 @@ public class MoveCommand implements Command, Movable {
     public void move() {
         Vector position = getPosition();
         Vector velocity = getVelocity();
+
+        if (isNull(position)) {
+            throw new CommandException("Не указаны координаты позиции");
+        }
 
         Vector newPosition = getVectorSum(position, velocity);
 
