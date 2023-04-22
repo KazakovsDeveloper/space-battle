@@ -15,6 +15,7 @@ class MoveCommandTest {
     private GameSetting gameSetting;
     private MoveCommand moveCommandWithNullPosition;
     private MoveCommand moveCommandWithNullVelocity;
+    private MoveCommand moveCommandWithNotCorrectValue;
 
     @BeforeEach
     public void init() {
@@ -29,6 +30,10 @@ class MoveCommandTest {
 
         GameSetting gameSettingWithNullVelocity = new GameSetting(0.0, 0.0, position, null);
         moveCommandWithNullVelocity = new MoveCommand(gameSettingWithNullVelocity);
+
+        Vector velocity2 = new Vector(0, 0);
+        GameSetting gameSettingWithNotCorrectVelocity = new GameSetting(0.0, 0.0, position, velocity2);
+        moveCommandWithNotCorrectValue = new MoveCommand(gameSettingWithNotCorrectVelocity);
     }
 
     /**
@@ -65,6 +70,17 @@ class MoveCommandTest {
     public void executeTestShouldThrowExceptionIfCanNotReadVelocity() {
 
         assertThrows(CommandException.class, () -> moveCommandWithNullVelocity.execute());
+
+    }
+
+    /**
+     * Попытка сдвинуть объект, у которого невозможно изменить положение в пространстве, приводит к ошибке
+     */
+    @Test
+    @DisplayName("ошибка, невозможно изменить положение в пространстве")
+    public void executeTestShouldThrowExceptionIfNotCorrectVelocity() {
+
+        assertThrows(CommandException.class, () -> moveCommandWithNotCorrectValue.execute());
 
     }
 }
