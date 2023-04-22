@@ -10,6 +10,10 @@ public class GameSetting {
 
     private Vector position;
 
+    private Direction direction;
+
+    private int directionsNumber;
+
     public GameSetting(double fuel, double consumption, Vector position, Vector velocity) {
         this.fuel = fuel;
         this.consumption = consumption;
@@ -44,5 +48,21 @@ public class GameSetting {
 
     public Vector getVelocity() {
         return velocity;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+    public int getDirectionsNumber() {
+        return directionsNumber;
+    }
+
+    public void setDirectionsNumber(int directionsNumber) {
+        this.directionsNumber = directionsNumber;
     }
 }
