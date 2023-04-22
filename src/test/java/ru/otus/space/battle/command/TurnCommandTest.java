@@ -23,6 +23,7 @@ class TurnCommandTest {
         GameSetting gameSetting = new GameSetting(10.0, 2.0, position, velocity);
         gameSetting.setDirection(direction);
         gameSetting.setDirectionsNumber(2);
+        gameSetting.setAngularVelocity(4);
 
         turnCommand = new TurnCommand(gameSetting);
     }

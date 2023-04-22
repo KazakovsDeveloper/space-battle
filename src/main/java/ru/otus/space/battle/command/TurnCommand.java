@@ -14,27 +14,39 @@ public class TurnCommand implements Turnable, Command {
 
     @Override
     public boolean execute() {
-        return false;
+        turn();
+        return true;
     }
 
     @Override
     public void turn() {
 
+        int angularVelocity = getAngularVelocity();
+
+        Direction direction = getDirection();
+
+        Direction next = next(angularVelocity, direction);
+
+        setDirection(next);
     }
 
     @Override
     public Direction getDirection() {
-        return null;
-    }
-
-    @Override
-    public int getAngularVelocity() {
-        return 0;
+        return gameSetting.getDirection();
     }
 
     @Override
     public void setDirection(Direction newV) {
+        gameSetting.setDirection(newV);
     }
 
+    @Override
+    public int getAngularVelocity() {
+        return gameSetting.getAngularVelocity();
+    }
+
+    private Direction next(int angularVelocity, Direction direction) {
+        return new Direction(1);
+    }
 
 }

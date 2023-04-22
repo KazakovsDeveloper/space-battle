@@ -14,6 +14,8 @@ public class GameSetting {
 
     private int directionsNumber;
 
+    private int angularVelocity;
+
     public GameSetting(double fuel, double consumption, Vector position, Vector velocity) {
         this.fuel = fuel;
         this.consumption = consumption;
@@ -64,5 +66,13 @@ public class GameSetting {
 
     public void setDirectionsNumber(int directionsNumber) {
         this.directionsNumber = directionsNumber;
+    }
+
+    public int getAngularVelocity() {
+        return angularVelocity;
+    }
+
+    public void setAngularVelocity(int angularVelocity) {
+        this.angularVelocity = angularVelocity;
     }
 }
