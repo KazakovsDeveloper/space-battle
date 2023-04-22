@@ -42,6 +42,10 @@ public class MoveCommand implements Command, Movable {
         int yPosition = position.getY();
         int yVelocity = velocity.getY();
 
+        if (xVelocity == 0 && yVelocity == 0) {
+            throw new CommandException("Объект не сдвинут, значения скорости " + xVelocity + " " + yVelocity);
+        }
+
         int xNewPosition = xPosition + xVelocity;
         int yNewPosition = yPosition + yVelocity;
 
