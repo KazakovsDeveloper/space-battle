@@ -1,8 +1,11 @@
 package ru.otus.space.battle.command;
 
+import ru.otus.space.battle.exception.CommandException;
 import ru.otus.space.battle.model.Direction;
 import ru.otus.space.battle.model.GameSetting;
 import ru.otus.space.battle.movement.Turnable;
+
+import static java.util.Objects.isNull;
 
 public class TurnCommand implements Turnable, Command {
 
@@ -23,16 +26,18 @@ public class TurnCommand implements Turnable, Command {
 
         int angularVelocity = getAngularVelocity();
 
-        Direction direction = getDirection();
-
-        Direction next = next(angularVelocity, direction);
+        Direction next = next(angularVelocity);
 
         setDirection(next);
     }
 
     @Override
     public Direction getDirection() {
-        return gameSetting.getDirection();
+        Direction direction = gameSetting.getDirection();
+        if (isNull(direction)) {
+            throw new CommandException("Направление не установлено");
+        }
+        return direction;
     }
 
     @Override
@@ -45,8 +50,23 @@ public class TurnCommand implements Turnable, Command {
         return gameSetting.getAngularVelocity();
     }
 
-    private Direction next(int angularVelocity, Direction direction) {
-        return new Direction(1);
+    private Direction next(int angularVelocity) {
+
+        int direction = getDirection().getDirection();
+
+        if (0 == direction) {
+            throw new CommandException("Направление не может быть нулевым");
+        }
+
+        int directionsNumber = gameSetting.getDirectionsNumber();
+
+        if (0==angularVelocity || 0==directionsNumber) {
+            throw new CommandException("Скорость и градус направления не должны быть 0");
+        }
+
+        int valueDirection = direction + angularVelocity / directionsNumber;
+
+        return new Direction(valueDirection);
     }
 
 }
