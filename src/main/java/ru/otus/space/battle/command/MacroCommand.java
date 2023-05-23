@@ -3,6 +3,7 @@ package ru.otus.space.battle.command;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class MacroCommand {
     private final ConcurrentLinkedQueue<Command> commands;
@@ -17,16 +18,32 @@ public class MacroCommand {
         while (!commands.isEmpty()) {
             Command command = commands.poll();
             if (command != null) {
-                executor.submit(() -> {
+                if ("HardStopCommand".equals(command.getClass().getSimpleName())) {
+                    HardStopCommand hardStopCommand = (HardStopCommand) command;
+                    hardStopCommand.hardStop(executor);
+                    break; // останавливаем выполнение цикла
+                } else if ("SoftStopCommand".equals(command.getClass().getSimpleName())) {
+                    SoftStopCommand softStopCommand = (SoftStopCommand) command;
+                    softStopCommand.softStop(executor);
                     try {
-                        System.out.println(command.getClass() + " ");
-                        command.execute();
-                    } catch (RuntimeException exception) {
-                        System.out.println("Исключение: " + exception);
+                        boolean terminated = executor.awaitTermination(60, TimeUnit.SECONDS);
+                        if (!terminated) {
+                            System.err.println("ExecutorService did not terminate");
+                        }
+                    } catch (InterruptedException e) {
+                        System.err.println("Tasks interrupted: " + e.getMessage());
                     }
-                });
+                } else {
+                    executor.submit(() -> {
+                        try {
+                            System.out.println(command.getClass() + " ");
+                            command.execute();
+                        } catch (RuntimeException exception) {
+                            System.out.println("Исключение: " + exception);
+                        }
+                    });
+                }
             }
         }
-        executor.shutdown();
     }
 }
