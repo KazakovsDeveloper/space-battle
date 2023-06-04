@@ -2,6 +2,10 @@ package ru.otus.space.battle.command;
 
 import java.util.concurrent.ExecutorService;
 
+/**
+ * Написать команду, которая останавливает цикл выполнения команд из пункта 1,
+ * только после того, как все команды завершат свою работу (soft stop).
+ */
 public class SoftStopCommand implements Command {
 
     @Override
