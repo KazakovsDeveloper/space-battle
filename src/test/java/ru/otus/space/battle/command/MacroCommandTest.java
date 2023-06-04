@@ -25,24 +25,30 @@ class MacroCommandTest {
     private MacroCommand macroCommandWithShutDown;
     private ConcurrentLinkedQueue<Command> commandsWithShutDown;
     private SoftStopCommand softStopCommand;
-
+    private StartCommand startCommand;
+    private BurnFuelCommand burnFuelCommand1;
+    private BurnFuelCommand burnFuelCommand2;
 
     @BeforeAll
     public void setUp() {
         commands = new ConcurrentLinkedQueue<>();
         macroCommand = new MacroCommand(commands);
         waiter = new Waiter();
+        startCommand = new StartCommand(macroCommand);
+        commands.add(startCommand);
 
+        burnFuelCommand1 = new BurnFuelCommand(new GameSetting(5.0, 5.0));
+        burnFuelCommand2 = new BurnFuelCommand(new GameSetting(5.0, 5.0));
         commandsWithShutDownNow = new ConcurrentLinkedQueue<>();
         macroCommandWithShutDownNow = new MacroCommand(commandsWithShutDownNow);
         hardStopCommand = new HardStopCommand();
         commandsWithShutDownNow.add(new RotateCommand());
         commandsWithShutDownNow.add(hardStopCommand);
-        commandsWithShutDownNow.add(new BurnFuelCommand(new GameSetting(5.0, 5.0)));
+        commandsWithShutDownNow.add(burnFuelCommand1);
 
         commandsWithShutDown = new ConcurrentLinkedQueue<>();
         softStopCommand = new SoftStopCommand();
-        commandsWithShutDown.add(new BurnFuelCommand(new GameSetting(5.0, 5.0)));
+        commandsWithShutDown.add(burnFuelCommand2);
         commandsWithShutDown.add(softStopCommand);
         commands.add(new RotateCommand());
         macroCommandWithShutDown = new MacroCommand(commandsWithShutDown);
@@ -56,10 +62,18 @@ class MacroCommandTest {
     }
 
     @Test
-    @DisplayName("проверяем, что команда soft stop выполнена")
+    @DisplayName("проверяем, что команда soft stop выполнена и выполнена burnFuelCommand из очереди")
     public void testSoftStop() {
         macroCommandWithShutDown.execute();
         assertTrue(softStopCommand.execute());
+        assertTrue(burnFuelCommand2.execute());
+    }
+
+    @Test
+    @DisplayName("проверяем, что команда start command выполнена")
+    public void testStartCommand() {
+        macroCommand.execute();
+        assertTrue(startCommand.execute());
     }
 
     @Test

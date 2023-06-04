@@ -14,6 +14,11 @@ public class MacroCommand {
         this.executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     }
 
+    /**
+     * Реализовать код, который запускается в отдельном потоке и делает следующее
+     * В цикле получает из потокобезопасной очереди команду и запускает ее.
+     * Выброс исключения из команды не должен прерывать выполнение потока.
+     */
     public void execute() {
         while (!commands.isEmpty()) {
             Command command = commands.poll();
