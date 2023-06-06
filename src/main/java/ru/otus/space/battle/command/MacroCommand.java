@@ -1,5 +1,6 @@
 package ru.otus.space.battle.command;
 
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -50,5 +51,13 @@ public class MacroCommand {
                 }
             }
         }
+    }
+
+    public void addCommandToQueue(Command command) {
+        commands.add(command);
+    }
+
+    public List<Command> getCommands() {
+        return List.copyOf(commands);
     }
 }
