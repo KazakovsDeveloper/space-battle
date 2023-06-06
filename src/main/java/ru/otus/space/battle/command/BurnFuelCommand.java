@@ -11,7 +11,7 @@ import static java.util.Objects.nonNull;
  */
 public class BurnFuelCommand implements DoubleValueChecker, Command {
 
-    private final GameSetting gameSetting;
+    private GameSetting gameSetting;
 
     public BurnFuelCommand(GameSetting gameSetting) {
         this.gameSetting = gameSetting;
@@ -20,8 +20,12 @@ public class BurnFuelCommand implements DoubleValueChecker, Command {
     @Override
     public boolean execute() {
         burnFuel();
-
         return true;
+    }
+
+    @Override
+    public void setGameSettings(GameSetting newGameSetting) {
+        this.gameSetting = newGameSetting;
     }
 
     private void burnFuel() {

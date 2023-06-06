@@ -9,7 +9,7 @@ import static java.util.Objects.isNull;
 
 public class MoveCommand implements Command, Movable {
 
-    private final GameSetting gameSetting;
+    private GameSetting gameSetting;
 
     public MoveCommand(GameSetting gameSetting) {
         this.gameSetting = gameSetting;
@@ -60,5 +60,10 @@ public class MoveCommand implements Command, Movable {
     @Override
     public Vector getVelocity() {
         return gameSetting.getVelocity();
+    }
+
+    @Override
+    public void setGameSettings(GameSetting newGameSetting) {
+        this.gameSetting = newGameSetting;
     }
 }

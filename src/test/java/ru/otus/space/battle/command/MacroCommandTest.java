@@ -113,5 +113,10 @@ class MacroCommandTest {
             waiter.resume();
             return true;
         }
+
+        @Override
+        public void setGameSettings(GameSetting newGameSetting) {
+
+        }
     }
 }

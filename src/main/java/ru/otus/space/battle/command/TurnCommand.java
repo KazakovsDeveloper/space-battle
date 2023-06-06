@@ -9,7 +9,7 @@ import static java.util.Objects.isNull;
 
 public class TurnCommand implements Turnable, Command {
 
-    private final GameSetting gameSetting;
+    private GameSetting gameSetting;
 
     public TurnCommand(GameSetting gameSetting) {
         this.gameSetting = gameSetting;
@@ -19,6 +19,11 @@ public class TurnCommand implements Turnable, Command {
     public boolean execute() {
         turn();
         return true;
+    }
+
+    @Override
+    public void setGameSettings(GameSetting newGameSetting) {
+        this.gameSetting = newGameSetting;
     }
 
     @Override
