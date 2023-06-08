@@ -1,21 +1,29 @@
 package ru.otus.agent.model;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
 public class ListOfGamers {
 
-    @NotBlank(message = "managerLogin должен быть заполнен")
-    private String managerLogin;
+    @NotNull(message = "Организатор игры должен быть указан")
+    private Gamer managerOfGame;
 
     private List<Gamer> gamers;
+
+    public ListOfGamers(Gamer managerOfGame, List<Gamer> gamers) {
+        this.managerOfGame = managerOfGame;
+        this.gamers = gamers;
+    }
+
+    public ListOfGamers() {
+    }
 
     public List<Gamer> getGamers() {
         return gamers;
     }
 
-    public String getManagerLogin() {
-        return managerLogin;
+    public Gamer getManagerOfGame() {
+        return managerOfGame;
     }
 }

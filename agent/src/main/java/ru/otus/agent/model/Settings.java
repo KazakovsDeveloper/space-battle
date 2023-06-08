@@ -40,4 +40,8 @@ public class Settings {
 
     public Settings() {
     }
+
+    public void setGameId(String gameId) {
+        this.gameId = gameId;
+    }
 }
