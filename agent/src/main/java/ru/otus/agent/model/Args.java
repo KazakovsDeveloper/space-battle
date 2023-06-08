@@ -1,4 +1,4 @@
-package ru.otus.space.battle.model;
+package ru.otus.agent.model;
 
 public class Args {
 
