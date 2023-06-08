@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import ru.otus.space.battle.IoC.IoC;
 import ru.otus.space.battle.command.Command;
 import ru.otus.space.battle.command.MacroCommand;
-import ru.otus.space.battle.command.TurnCommand;
 import ru.otus.space.battle.model.Args;
 import ru.otus.space.battle.model.Game;
 import ru.otus.space.battle.model.Settings;

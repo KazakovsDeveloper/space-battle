@@ -6,7 +6,12 @@
 
     <groupId>ru.otus.space.battle</groupId>
     <artifactId>space-battle</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>server-game</module>
+        <module>agent</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
