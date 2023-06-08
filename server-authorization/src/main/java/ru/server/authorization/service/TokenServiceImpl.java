@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.server.authorization.IoC.IoC;
 import ru.server.authorization.model.ListOfGamers;
+import ru.server.authorization.model.TokenResponse;
 import ru.server.authorization.util.Utils;
 
 import java.security.KeyFactory;
@@ -21,7 +22,7 @@ public class TokenServiceImpl implements TokenService {
     private String PRIVATE_KEY;
 
     @Override
-    public String generateToken(String tankBattleId, String gamerLogin) {
+    public TokenResponse generateToken(String tankBattleId, String gamerLogin) {
 
         ListOfGamers gamersByTankBattleId = IoC.getGamersByTankBattleId(tankBattleId);
 
@@ -43,16 +44,18 @@ public class TokenServiceImpl implements TokenService {
 
                 String gameId = Utils.generateRandomId();
 
-                return Jwts.builder()
+                String token = Jwts.builder()
                         .setSubject(gamerLogin)
                         .setExpiration(expirationDate)
                         .claim("gameId", gameId)
                         .signWith(privateKey, SignatureAlgorithm.RS256)
                         .compact();
+                return new TokenResponse(token, gameId);
+
             } catch (Exception exception) {
                 throw new RuntimeException("Не удалось сгенерировать токен " + exception);
             }
         }
-        return " ";
+        return new TokenResponse();
     }
 }

@@ -1,7 +1,9 @@
 package ru.server.authorization.service;
 
+import ru.server.authorization.model.TokenResponse;
+
 public interface TokenService {
 
-    String generateToken(String tankBattleId, String gamerLogin);
+    TokenResponse generateToken(String tankBattleId, String gamerLogin);
 
 }
