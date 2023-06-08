@@ -21,7 +21,9 @@ public class AuthController {
     }
 
     @PostMapping("/createToken")
-    public ResponseEntity<String> createToken(@Valid @RequestBody @NotNull ListOfGamers gamers) {
+    public ResponseEntity<String> createToken(@Valid
+                                              @RequestBody
+                                              @NotNull ListOfGamers gamers) {
         authService.createToken(gamers);
         return ResponseEntity.status(201).body("Токен создан");
     }

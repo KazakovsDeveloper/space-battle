@@ -1,5 +1,6 @@
 package ru.otus.agent.controller;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,11 @@ public class GameController {
     }
 
     @PostMapping("/createCommand")
-    public ResponseEntity<String> createCommand(@RequestBody Settings settings, @RequestHeader String managerLogin) {
+    public ResponseEntity<String> createCommand(
+            @RequestBody
+            @NotNull Settings settings,
+            @RequestHeader
+            @NotNull String managerLogin) {
         commandService.createCommand(settings, managerLogin);
         return ResponseEntity.status(201).body("Команда создана");
     }
