@@ -5,6 +5,7 @@ import ru.otus.space.battle.command.MacroCommand;
 import ru.otus.space.battle.mapper.SettingsMapper;
 import ru.otus.space.battle.model.Game;
 import ru.otus.space.battle.model.GameSetting;
+import ru.otus.space.battle.model.GamerRole;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ public abstract class IoC {
     private static final Map<String, Game> games = new HashMap<>();
     private static final Map<String, Command> commands = new HashMap<>();
     private static final SettingsMapper settingsMapper = new SettingsMapper();
+    private static final Map<String, GamerRole> gamerRoles = new HashMap<>();
 
     public static void addGameToIoC(String gameId, Game game) {
         games.put(gameId, game);
@@ -50,6 +52,14 @@ public abstract class IoC {
 
     public static SettingsMapper getSettingsMapper() {
         return settingsMapper;
+    }
+
+    public static void addRoleToGamersIoC(String gamerLogin, GamerRole role) {
+        gamerRoles.put(gamerLogin, role);
+    }
+
+    public static GamerRole getGamerRoleByLogin(String gamerLogin) {
+        return gamerRoles.get(gamerLogin);
     }
 
 }
