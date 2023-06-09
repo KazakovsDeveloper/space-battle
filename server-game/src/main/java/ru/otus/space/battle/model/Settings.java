@@ -24,12 +24,24 @@ public class Settings {
         return gameId;
     }
 
+    public void setGameId(String gameId) {
+        this.gameId = gameId;
+    }
+
     public String getOperationId() {
         return operationId;
     }
 
+    public void setOperationId(String operationId) {
+        this.operationId = operationId;
+    }
+
     public Args getArgs() {
         return args;
+    }
+
+    public void setArgs(Args args) {
+        this.args = args;
     }
 
     public Settings(String gameId, String operationId, Args args) {
