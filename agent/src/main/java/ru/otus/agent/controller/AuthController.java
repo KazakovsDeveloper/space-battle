@@ -20,11 +20,14 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/createToken")
+    /**
+     * Один из пользователей организует танковый бой и определяет список участников (их может быть больше 2-х).
+     */
+    @PostMapping("/createBattle")
     public ResponseEntity<String> createToken(@Valid
                                               @RequestBody
                                               @NotNull ListOfGamers gamers) {
         authService.createToken(gamers);
-        return ResponseEntity.status(201).body("Токен создан");
+        return ResponseEntity.status(201).body("Бой организован");
     }
 }

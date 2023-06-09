@@ -25,6 +25,10 @@ public class CommandServiceImpl implements CommandService {
         this.restTemplate = restTemplate;
     }
 
+    /**
+     * Пользователь при отправке сообщений в Игровой сервер прикрепляет к сообщениям выданный jwt токен
+     */
+
     @Override
     public void createCommand(Settings settings, String managerLogin) {
         try {

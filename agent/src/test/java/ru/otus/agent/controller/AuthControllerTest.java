@@ -47,7 +47,7 @@ class AuthControllerTest {
     @Test
     @DisplayName("успешный запрос")
     public void createTokenTestSuccess() throws Exception {
-        this.mockMvc.perform(post("/createToken")
+        this.mockMvc.perform(post("/createBattle")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(listOfGamers))
                         .accept(MediaType.APPLICATION_JSON)
@@ -58,7 +58,7 @@ class AuthControllerTest {
     @Test
     @DisplayName("запрос не прошел валидацию")
     public void createTokenTestReturn400() throws Exception {
-        this.mockMvc.perform(post("/createToken")
+        this.mockMvc.perform(post("/createBattle")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(new ListOfGamers()))
                         .accept(MediaType.APPLICATION_JSON)

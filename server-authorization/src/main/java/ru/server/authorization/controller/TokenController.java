@@ -18,10 +18,13 @@ public class TokenController {
         this.tokenService = tokenService;
     }
 
+    /**
+     * Если пользователь был указан в списке участников танкового боя, то он выдает пользователю jwt токен, в котором указан id игры.
+     */
     @PostMapping("/createToken")
     public ResponseEntity<TokenResponse> generateToken(@RequestBody String tankBattleId,
-                                                @RequestHeader
-                                                @NotNull String gamerLogin) {
+                                                       @RequestHeader
+                                                       @NotNull String gamerLogin) {
         TokenResponse token = tokenService.generateToken(tankBattleId, gamerLogin);
         return ResponseEntity.ok(token);
     }

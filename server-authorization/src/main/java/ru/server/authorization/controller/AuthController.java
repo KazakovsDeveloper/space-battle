@@ -20,6 +20,9 @@ public class AuthController {
         this.tankBattleService = tankBattleService;
     }
 
+    /**
+     * Принимает список участников и возвращает ответ
+     */
     @PostMapping("/tankBattleId")
     public ResponseEntity<String> createTankBattleId(@RequestBody
                                                      @NotNull

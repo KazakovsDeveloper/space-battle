@@ -21,6 +21,10 @@ public class TokenServiceImpl implements TokenService {
     @Value("${private.key}")
     private String PRIVATE_KEY;
 
+    /**
+     * Генерация jwt-токена на основе приватного ключа
+     * В токен добавлен: логин участника, запросившего токен + id игры
+     */
     @Override
     public TokenResponse generateToken(String tankBattleId, String gamerLogin) {
 

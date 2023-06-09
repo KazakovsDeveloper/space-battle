@@ -51,6 +51,10 @@ public class AuthServiceImpl implements AuthService {
         }
     }
 
+    /**
+     * На сервер авторизации уходит запрос о том, что организуется танковый бой и присылается список его участников.
+     * Сервер в ответ возвращает id танкового боя.
+     */
     private String getTankBattleId(ListOfGamers gamers) {
         HttpEntity<ListOfGamers> tankBattleReq = new HttpEntity<>(gamers);
         ResponseEntity<String> queryGame =
@@ -59,6 +63,10 @@ public class AuthServiceImpl implements AuthService {
         return queryGame.getBody();
     }
 
+    /**
+     * Аутентифицированный пользователь посылает запрос на выдачу jwt токена, который авторизует право этого пользователя на участие в танковом бое.
+     * Для этого он должен указать в запросе id танкового боя.
+     */
     private TokenResponse getTokenResponse(String tankBattleId, String managerLogin) {
 
         HttpHeaders headers = new HttpHeaders();

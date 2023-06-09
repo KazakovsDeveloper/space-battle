@@ -21,6 +21,11 @@ public class TokenServiceImpl implements TokenService {
     @Value("${public.key}")
     private String PUBLIC_KEY;
 
+    /**
+     * Сервер при получении сообщения удостоверяется, что токен был выдан сервером авторизации (проверят хэш jwt токена)
+     * и проверяет, что пользователь запросил выполнение операции в игре, в которой он эту операцию может выполнять.
+     */
+
     @Override
     public void tokenCheck(String token) {
         if (isNull(token)) {
