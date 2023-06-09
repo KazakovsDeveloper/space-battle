@@ -1,0 +1,13 @@
+server:
+  port: 9999
+public:
+  key:
+    -----BEGIN PUBLIC KEY-----
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxJ0yGvMIKhWoo0RCObmm
+    Eyhd4EDSag4ZDlYNBGv4aB7IjQix17L2nZRRmq2d8ZY/09Hozo8uKiUvsWTehlfM
+    VeaC+asSyWPTYeq27gx0VqrlYdGSbBLCFw4TjKAvH8tdLa5qfdtD8fmXtlW2Mor2
+    za3h18jibkoYtUwdqJeTtgZ6Ian7ytcvExe0m9JasXuR6Zi1XfPnHTny1Q/uyyck
+    WSkBYp6Z9Y3SCSgIw7yvBWDc7NmNNaAJfj4MV4q5mN4ZZfMl/uea7afnPw1rPjEk
+    PUjyaibfwhCLzqofyYUZ68GbtVrw9OJUiGKOO4o3G0ZyfNa6zfUUkskjdwOJ2qFR
+    DwIDAQAB
+    -----END PUBLIC KEY-----
