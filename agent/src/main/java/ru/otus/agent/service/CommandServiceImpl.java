@@ -1,5 +1,6 @@
 package ru.otus.agent.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,12 @@ import ru.otus.agent.model.TokenResponse;
 public class CommandServiceImpl implements CommandService {
 
     private final RestTemplate restTemplate;
+
+    @Value("${agent.server.game.url}")
+    private String serverGameUrl;
+
+    @Value("${agent.server.game.header}")
+    private String authHeader;
 
     public CommandServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -35,9 +42,9 @@ public class CommandServiceImpl implements CommandService {
 
     private void sendCommandToServerGame(String token, Settings settings) {
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer " + token);
+        httpHeaders.add(authHeader, "Bearer " + token);
         HttpEntity<Settings> commandRequest = new HttpEntity<>(settings, httpHeaders);
-        restTemplate.postForEntity("localhost:9090/settings", commandRequest, String.class);
+        restTemplate.postForEntity(serverGameUrl, commandRequest, String.class);
     }
 
 }

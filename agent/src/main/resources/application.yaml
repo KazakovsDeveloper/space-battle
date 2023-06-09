@@ -4,3 +4,7 @@ agent:
   token:
     url: localhost:8888/createToken
     header: gamerLogin
+  server:
+    game:
+      url: localhost:9999/settings
+      header: Authorization
