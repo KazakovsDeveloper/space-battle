@@ -1,0 +1,6 @@
+agent:
+  auth:
+    url: localhost:8888/tankBattleId
+  token:
+    url: localhost:8888/createToken
+    header: gamerLogin

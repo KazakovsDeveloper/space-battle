@@ -1,5 +1,6 @@
 package ru.otus.agent.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,16 @@ import ru.otus.agent.model.TokenResponse;
 public class AuthServiceImpl implements AuthService {
 
     private final RestTemplate restTemplate;
+
+    @Value("${agent.auth.url}")
+    private String authUrl;
+
+    @Value("${agent.token.url}")
+    private String tokenUrl;
+
+    @Value("${agent.token.header}")
+    private String tokenHeader;
+
     public AuthServiceImpl(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
@@ -43,7 +54,7 @@ public class AuthServiceImpl implements AuthService {
     private String getTankBattleId(ListOfGamers gamers) {
         HttpEntity<ListOfGamers> tankBattleReq = new HttpEntity<>(gamers);
         ResponseEntity<String> queryGame =
-                restTemplate.postForEntity("localhost:8888/tankBattleId", tankBattleReq, String.class);
+                restTemplate.postForEntity(authUrl, tankBattleReq, String.class);
 
         return queryGame.getBody();
     }
@@ -51,11 +62,11 @@ public class AuthServiceImpl implements AuthService {
     private TokenResponse getTokenResponse(String tankBattleId, String managerLogin) {
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("gamerLogin", managerLogin);
+        headers.add(tokenHeader, managerLogin);
         HttpEntity<String> tokenReq = new HttpEntity<>(tankBattleId, headers);
 
         ResponseEntity<TokenResponse> createToken =
-                restTemplate.postForEntity("localhost:8888/createToken", tokenReq, TokenResponse.class);
+                restTemplate.postForEntity(tokenUrl, tokenReq, TokenResponse.class);
 
         return createToken.getBody();
     }

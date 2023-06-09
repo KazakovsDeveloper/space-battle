@@ -28,3 +28,6 @@ private:
     4yKUh3Im6AjNWviT5RpJmuzVydqMZXD8GRexzwdeBnE40SJe7uf0OyJX9jutCcsb
     VUjm+LLv5y+/2RNx79UGLGIp
     -----END PRIVATE KEY-----
+
+server:
+  port: 8888
